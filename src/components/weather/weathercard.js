@@ -5,36 +5,13 @@ const Weathercard = ({
   humidity,
   pressure,
   weathermood,
+  icon,
   name,
   speed,
   country,
   sunset,
 }) => {
-  const [weatherState, setWeatheState] = React.useState("");
-
-  useEffect(() => {
-    if (weathermood) {
-      switch (weathermood) {
-        case "Clouds":
-          setWeatheState("wi-day-cloudy");
-          break;
-        case "Haze":
-          setWeatheState("wi-fog");
-          break;
-        case "Clear":
-          setWeatheState("wi-day-sunny");
-          break;
-        case "Mist":
-          setWeatheState("wi-dust");
-          break;
-
-        default:
-          setWeatheState("wi-day-sunny");
-          break;
-      }
-    }
-  }, [weathermood]);
-
+  
   // converting the seconds into time
   let sec = sunset;
   let date = new Date(sec * 1000);
@@ -43,7 +20,7 @@ const Weathercard = ({
     <>
       <article className="widget">
         <div className="weatherIcon">
-          <i className={`wi ${weatherState}`}></i>
+          <img src={`http://openweathermap.org/img/wn/${icon}@4x.png`} />
         </div>
 
         <div className="weatherInfo">
